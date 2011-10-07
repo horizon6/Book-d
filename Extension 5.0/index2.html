@@ -1,0 +1,54 @@
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link type="text/css" href="main.css" rel="stylesheet"  media="screen" />
+		<script type="text/javascript" src="jquery.js"></script>
+		</head>
+	<body>
+	<body>
+    		<div id="book">
+			<canvas id="pageflip-canvas"></canvas>
+			<div id="pages">
+				 <section id="page1">					
+				</section>
+				<section id="page2">
+					</section>
+				<section id="page3">					
+				</section>
+				<section id="page4">					
+				</section>	
+				<section id="page5">					
+				</section>
+			</div>
+		</div>
+		<script type="text/javascript" src="pageflip2.js"></script>
+		</body>
+	<script>
+	var index=1,cnt=localStorage.getItem("0");
+	do
+	{
+		page_dsp(index);
+		index++;
+	}while(index<=cnt);
+function page_dsp(index)
+{
+	$("#page"+index).load(localStorage.getItem(index), function(response, status, xhr) {
+				if (status == "error") {
+			var msg = "Sorry but there was an error: ";
+			$("#page"+index).html(msg + xhr.status + " " + xhr.statusText);
+		}
+		});
+}
+</script>
+<script>
+/*	$("#page2").load("http://api.jquery.com/text-selector/", function(response, status, xhr) {
+				if (status == "error") {
+			var msg = "Sorry but there was an error: ";
+    $("#page2").html(msg + xhr.status + " " + xhr.statusText);
+  }
+  
+});*/
+</script>
+
+</body>
+</html>

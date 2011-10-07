@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  body{ font-size: 12px; font-family: Arial; }
+  </style>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+  
+<b></b>
+<div id="success"></div>
+<b></b>
+<div id="error"></div>
+  
+<script>
+//localStorage.clear();
+function open_tab(){
+	chrome.tabs.create({url:'\\index2.html'});
+}
+frameid=1;
+function save_tab(){
+chrome.tabs.getSelected(null, function(tab) {
+    myFunction(tab.url);
+});
+}
+function myFunction(taburl) {
+	curindex = 0;
+	value = localStorage.getItem("0");
+	if(value)
+	{
+		curindex = Number(value) + 1;
+	}
+	else
+	{
+		curindex = 1;   
+	}
+	
+	//var frameid = document.getElementById('frame');
+	localStorage.setItem("0", curindex);
+	localStorage.setItem(curindex, taburl);
+}
+  </script>
+<INPUT TYPE="button" NAME="SAVE" value="SAVE" onClick="save_tab();"></INPUT> 
+<INPUT TYPE="button" NAME="OPEN" value="OPEN" onClick="open_tab();"></INPUT>
+</body>
+</html>
